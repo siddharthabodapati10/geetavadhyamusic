@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Geeta Vadya School of Music — Carnatic Vocal Training</title>
+<meta name="description" content="Learn Carnatic vocal music one-on-one with Smt. Divya Meena Guhan — in person on Long Island, NY, or online worldwide." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+
+.perf-thumb{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.perf-thumb iframe{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.perf-thumb{
+    position: relative;
+    width: 100%;
+
+}
+
+.perf-thumb video{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* Fills the entire frame */
+
+}
+
+.teacher-portrait.slider{
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+}
+
+.teacher-portrait.slider .slide{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity .8s ease;
+}
+
+.teacher-portrait.slider .slide.active{
+    opacity:1;
+    position:relative;
+}
+  :root{
+    --maroon-900:#4A0E16;
+    --maroon-800:#5C121C;
+    --maroon-700:#731723;
+    --cream:#FBF3E6;
+    --cream-2:#F4E9D8;
+    --card:#FFFCF6;
+    --gold:#C68A2E;
+    --gold-dark:#A8721F;
+    --teal:#1E4640;
+    --teal-dark:#153530;
+    --ink:#2B1B14;
+    --muted:#8A7566;
+    --line:rgba(43,27,20,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Poppins',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Playfair Display',poppins;
+    margin:0;
+    line-height:1.12;
+    font-weight:600;
+  }
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--gold-dark);
+  }
+  .eyebrow.on-dark{color:#E8C67D;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 28px;border-radius:999px;
+    font-weight:600;font-size:0.92rem;letter-spacing:0.01em;
+    border:1.5px solid transparent;cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:0 6px 18px rgba(198,138,46,0.35);}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(198,138,46,0.45);}
+  .btn-outline-dark{border-color:rgba(255,255,255,0.55);color:#fff;}
+  .btn-outline-dark:hover{background:rgba(255,255,255,0.1);}
+  .btn-outline{border-color:var(--ink);color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:#fff;}
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,243,230,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;}
+  .logo{display:flex;flex-direction:column;line-height:1;}
+  .logo .name{font-family:'poppins-extra bold',serif;font-size:1.5rem;font-weight:700;color:var(--maroon-800);}
+  .logo .tag{font-size:0.62rem;letter-spacing:0.28em;color:var(--muted);margin-top:3px;font-weight:600;}
+  nav.links{display:flex;gap:6px;}
+  nav.links a{
+    padding:9px 16px;border-radius:999px;font-size:0.88rem;font-weight:500;
+    transition:background .2s ease;
+  }
+  nav.links a:hover{background:var(--cream-2);}
+  #menu-toggle{display:none;background:none;border:1.5px solid var(--ink);border-radius:10px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;}
+  #mobile-menu{display:none;flex-direction:column;gap:4px;padding:0 24px 18px;}
+  #mobile-menu a{padding:12px 14px;border-radius:10px;border:1px solid var(--line);font-weight:500;}
+
+  @media (max-width:860px){
+    nav.links, .header-cta{display:none;}
+    #menu-toggle{display:flex;}
+  }
+
+  /* hero */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 140% at 15% 0%, var(--maroon-700) 0%, var(--maroon-900) 60%);
+    color:#fff;
+    padding:76px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center;}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .hero h1{font-size:clamp(2.3rem,4.6vw,3.6rem);font-weight:600;margin-top:18px;}
+  .hero h1 em{
+    font-style:italic;color:#F0C46A;
+  }
+  .hero p.lead{
+    margin-top:20px;max-width:520px;color:rgba(255,255,255,0.82);
+    font-size:1.02rem;line-height:1.7;
+  }
+  .hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .hero-art{position:relative;display:flex;flex-direction:column;align-items:center;}
+  .arch-frame{
+    width:100%;max-width:340px;aspect-ratio:3/4;
+    border-radius:170px 170px 16px 16px;
+    background:linear-gradient(160deg,#7A2430,#3E0B12 75%);
+    border:3px solid rgba(240,196,106,0.6);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+    overflow:hidden;
+  }
+  .arch-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+  .arch-frame svg{width:56%;opacity:0.92;}
+  .hero-art .caption{margin-top:16px;font-size:0.85rem;color:rgba(255,255,255,0.75);text-align:center;}
+  .hero-art .caption strong{display:block;color:#fff;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:2px;}
+
+  .swara-ticker{
+    margin-top:56px;border-top:1px solid rgba(255,255,255,0.15);
+    padding:18px 0;overflow:hidden;white-space:nowrap;
+  }
+  .swara-ticker .track{
+    display:inline-flex;gap:40px;animation:scroll-left 22s linear infinite;
+    font-family:'poppins',serif;font-style:italic;font-size:1.1rem;color:rgba(240,196,106,0.85);
+  }
+  @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin:0 auto 48px;text-align:center;}
+  .section-head h2{font-size:clamp(1.8rem,3.2vw,2.5rem);margin-top:14px;}
+  .section-head p{margin-top:16px;color:var(--muted);line-height:1.7;font-size:0.98rem;}
+
+  .bg-cream2{background:var(--cream-2);}
+  .bg-teal{background:linear-gradient(160deg,var(--teal),var(--teal-dark));color:#fff;}
+  .bg-maroon{background:var(--maroon-900);color:#fff;}
+
+  /* program cards */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px; auto scroll}
+  @media (max-width:860px){.grid3{grid-template-columns:1fr;}}
+  .prog-card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:32px 28px;display:flex;flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .prog-card:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(74,14,22,0.12);}
+  .prog-card .level-tag{font-size:0.68rem;letter-spacing:0.18em;color:var(--muted);font-weight:600;text-transform:uppercase;}
+  .prog-card .swara{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--gold-dark);margin-top:6px;font-weight:700;}
+  .prog-card .level-name{font-size:1.15rem;font-weight:600;margin-top:2px;margin-bottom:18px;font-family:'Playfair Display',serif;}
+  .prog-card ul{list-style:none;margin:0 0 26px;padding:0;flex:1;}
+  .prog-card li{
+    padding:9px 0;border-bottom:1px dashed var(--line);
+    font-size:0.92rem;color:var(--ink);opacity:0.85;
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .prog-card li:last-child{border-bottom:none;}
+  .prog-card li::before{content:"✦";color:var(--gold);font-size:0.7rem;margin-top:4px;}
+  .prog-card .btn{align-self:flex-start;}
+
+  /* how it works */
+  .how-card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px;
+  }
+  .how-card .swara{font-family:'Playfair Display',serif;color:var(--gold-dark);font-size:1.6rem;font-weight:700;}
+  .how-card h4{font-size:1.1rem;margin:6px 0 12px;}
+  .how-card p{color:var(--muted);font-size:0.92rem;line-height:1.65;margin:0;}
+  .testi-avatar{
+    width:72px;height:72px;border-radius:50%;object-fit:cover;
+    border:2px solid var(--gold);margin:0 0 14px;display:block;
+  }
+  .testi-avatar.placeholder{
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);
+    color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;
+  }
+
+  /* devotional pills */
+  .pill-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px;}
+  .pill{
+    border:1.5px solid rgba(255,255,255,0.4);border-radius:999px;
+    padding:10px 20px;font-size:0.86rem;font-weight:500;color:#fff;
+    background:rgba(255,255,255,0.06);transition:background .2s ease, transform .2s ease;
+  }
+  .pill:hover{background:rgba(255,255,255,0.16);transform:translateY(-2px);}
+
+  /* about teacher */
+  .about-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:56px;align-items:center;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .teacher-portrait{
+    aspect-ratio:4/5;border-radius:20px;
+    background:linear-gradient(150deg,#F0C46A 0%, var(--gold-dark) 55%, var(--maroon-800) 100%);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 22px 44px rgba(74,14,22,0.18);
+    overflow:hidden;
+  }
+  .teacher-portrait img{width:100%;height:100%;object-fit:cover;object-position:top center;}
+  .teacher-portrait svg{width:48%;opacity:0.95;}
+  .about-copy p{color:var(--ink);opacity:0.82;line-height:1.75;font-size:0.98rem;margin:0 0 16px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;margin:14px 0 20px;
+    padding:10px 18px;border-radius:999px;background:var(--cream-2);
+    border:1px solid var(--line);font-size:0.85rem;font-weight:600;color:var(--maroon-800);
+  }
+  blockquote{
+    border-left:3px solid var(--gold);margin:22px 0 0;padding-left:18px;
+    font-family:'Playfair Display',serif;font-style:italic;font-size:1.08rem;color:var(--ink);opacity:0.85;
+  }
+
+  /* performances */
+  .grid-perf{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media (max-width:860px){.grid-perf{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.grid-perf{grid-template-columns:1fr;}}
+  .perf-card{border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);}
+  .perf-thumb{
+    aspect-ratio:16/9;background:linear-gradient(150deg,var(--maroon-700),var(--maroon-900));
+    display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;
+  }
+    .perf-thumb:hover .play-circle{transform:scale(1.08);background:rgba(255,255,255,0.22);}
+  .play-circle svg{width:0px;height:0px;fill:#F0C46A;margin-left:2px;}
+  .perf-caption{padding:14px 16px;font-size:0.88rem;font-weight:500;color:var(--ink);opacity:0.85;}
+
+  /* faq */
+  .faq-item{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;background:var(--card);overflow:hidden;}
+  .faq-q{
+    width:100%;text-align:left;padding:18px 22px;background:none;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    font-family:'Poppins',sans-serif;font-size:0.98rem;font-weight:500;color:var(--ink);
+  }
+  .faq-q .plus{font-size:1.3rem;color:var(--gold-dark);transition:transform .25s ease;flex-shrink:0;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a p{margin:0;padding:0 22px 20px;color:var(--muted);font-size:0.92rem;line-height:1.65;}
+
+  /* contact */
+  .contact-inner{max-width:900px;margin:0 auto;text-align:center;}
+  .contact-inner h2{font-size:clamp(1.9rem,3.4vw,2.6rem);}
+  .contact-inner p.lead{color:rgba(255,255,255,0.78);margin-top:14px;}
+  form.enroll{
+    margin-top:40px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);
+    border-radius:20px;padding:36px;text-align:left;
+    display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  }
+  @media (max-width:700px){form.enroll{grid-template-columns:1fr;padding:24px;}}
+  form.enroll label{display:block;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:8px;font-weight:600;}
+  form.enroll input, form.enroll select, form.enroll textarea{
+    width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.25);
+    background:rgba(255,255,255,0.92);color:var(--ink);font-family:'Poppins',sans-serif;font-size:0.92rem;
+  }
+  form.enroll textarea{resize:vertical;min-height:52px;}
+  form.enroll .full{grid-column:1/-1;}
+  form.enroll .submit-row{grid-column:1/-1;margin-top:6px;}
+
+  /* footer */
+  footer{padding:64px 0 0;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
+  @media (max-width:760px){.footer-grid{grid-template-columns:1fr;}}
+  .footer-grid h4{font-size:0.95rem;color:var(--gold);margin-bottom:14px;font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:0.02em;}
+  .footer-grid ul{list-style:none;margin:0;padding:0;}
+  .footer-grid li{margin-bottom:10px;font-size:0.9rem;color:rgba(255,255,255,0.75);}
+  .footer-grid p{color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.7;max-width:320px;}
+  .footer-bottom{
+    margin-top:48px;border-top:1px solid rgba(255,255,255,0.14);
+    padding:22px 0;text-align:center;font-size:0.82rem;color:rgba(255,255,255,0.55);
+  }
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+  }
+</style>
+
+<script>
+document.querySelectorAll('.slider').forEach(slider => {
+
+    const slides = slider.querySelectorAll('.slide');
+    let current = 0;
+
+    if(slides.length <= 1) return;
+
+    slides[current].classList.add('active');
+
+    setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+    }, 3000);
+
+});
+</script>
+
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="logo" href="#top">
+      <span class="name">Geeta Vadya</span>
+      <span class="tag">SCHOOL OF MUSIC</span>
+    </a>
+    <nav class="links">
+      <a href="#programs">Programs</a>
+      <a href="#about">About</a>
+      <a href="#performances">Performances</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-gold header-cta" href="#contact">Book a class</a>
+    <button id="menu-toggle" aria-label="Toggle menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="#programs">Programs</a>
+    <a href="#about">About</a>
+    <a href="#performances">Performances</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn-gold" style="justify-content:center;margin-top:6px;" href="#contact">Join Now</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow on-dark">CARNATIC VOCAL MUSIC </span>
+        <h1>Experience the <em>magic</em> of Carnatic music</h1>
+        <p class="lead">Discover the timeless beauty of Carnatic music at Geeta Vadya School of Music, led by acclaimed vocalist and educator Smt. Divyameena Guhan. We offer structured online classes for students worldwide and in-person Carnatic vocal lessons in Pittsburgh, Pennsylvania, helping children and adults of all skill levels—from beginners to advanced learners—build a strong classical foundation and perform with confidence.</p>
+        <div class="hero-actions">
+          <a class="btn btn-outline-dark" href="#programs">View programs</a>
+          <a class="btn btn-gold" href="#contact">Begin your journey</a>
+        </div>
+      </div>
+      <div class="hero-art">
+      <div class="slideshow-container">
+ 
+
+
+        <div class="arch-frame">
+
+          <img class = "slide"src="assets/divya-meena-guhan.jpeg" alt="Smt. Divya Meena Guhan playing the veena">
+        </div>
+        <div class="caption">
+          <strong>Smt. Divya Meena Guhan</strong>
+          Founder &amp; Director
+        </div>
+      </div>
+    </div>
+    <div class="swara-ticker">
+      <div class="track">
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+        <span>Sa · Ri · Ga · Ma · Pa · Da · Ni · Sa</span>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="programs">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">CHOOSE YOUR PROGRAM</span>
+      <h2>A path that rises, one swara at a time</h2>
+    </div>
+    <div class="grid3">
+      <div class="prog-card">
+        <span class="level-name">Beginner</span>
+        <ul>
+          <li>Sarali Varisais</li>
+          <li>Janta Varisais</li>
+          <li>Alankaram</li>
+          <li>Geetam</li>
+          <li>Small Krithis and Bhajans</li>
+        </ul>
+        <a class="btn btn-outline" href="#contact">Get started</a>
+      </div>
+      <div class="prog-card">
+        <span class="level-name">Intermediate</span>
+        <ul>
+          <li>Swara Jathis</li>
+          <li>Varnam</li>
+          <li>Krithis</li>
+          <li>Music Theory & Laya</li>
+          <li>Introduction to Manodharma</li>
+        </ul>
+        <a class="btn btn-outline" href="#contact">Get started</a>
+      </div>
+      <div class="prog-card">
+
+        <span class="level-name">Advanced</span>
+        <ul>
+          <li>Ata Tala Varnam</li>
+          <li>Pancharatna Krithis</li>
+          <li>Big Krithis</li>
+          <li>Going deeper into Manodharma</li>
+          <li>Concert preparation</li>
+        </ul>
+        <a class="btn btn-outline" href="#contact">Get started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream2">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Testimonials</span>
+      <h2>Our Students</h2>
+    </div>
+    <div class="grid3">
+      
+
+        <div class="how-card">
+        <img class="testi-avatar" src="Assets/Sowmya.jpeg" alt="Sowmya, student">
+        <span class="swara">Sowmya</span>
+        <h4>Student</h4>
+        <p>"Divya Meena is very patient and highly skilled at assessing a student’s abilities and interests and tailors their lessons accordingly. She is flexible in scheduling classes, which is important for me to be able to pursue my passion along with my hectic routine. She makes my learnings fun and challenging. She cuts me slack during challenging lessons but also pushes me to learn at my maximum capacity. It is because of her push and efforts to build confidence in my capabilities that I got to perform my first carnatic concert in April 2024."</p>
+      </div>
+
+
+
+
+      <div class="how-card">
+        <img class="testi-avatar" src="Assets/sac.jpeg" alt="Sowmya, student">
+        <span class="swara">Sachika Modi</span>
+        <h4>Student</h4>
+        <p>"I have been leaning with Divya akka for almost six months and I’ve learned a little over 10 songs. For me Akka has been a big help and step in my music career. When I started singing classes with her I was a student with decent amount of knowledge but now I’m able to grasp songs relatively easily. I enjoy being able to disconnect from the world with akka while being able to have a friend and a teacher"</p>
+      </div>
+
+
+
+      <div class="how-card">
+        <img class="testi-avatar" src="Assets/kaul.jpeg" alt="Sowmya, student">
+        <span class="swara">Kaulini Kanakagiri</span>
+        <h4>Student</h4>
+        <p>"When I first started music journey with Meena Akka, I was hesitant in my abilities to sing, with the consistency of the support from Meena Akka, I feel that my confidence is building because she sees my true potential. All the interactions I have had with her, she does not speak to me in a way that she is more superior, she always speaks as if I am a friend and younger sister. Her encouragement has brought me a long way in the span of one year and motivates me to keep trying harder.."</p>
+      </div>
+
+
+
+        <div class="how-card">
+        <img class="testi-avatar" src="Assets/aditi.avif" alt="Sowmya, student">
+        <span class="swara">Aditi</span>
+        <h4>Student</h4>
+        <p>"Meena is very patient with my 4 year old daughter and knows how to engage her in the class. We started learning music from Meena when my daughter was 3 years old. She is very good with kids and can easily hold their attention. She is very committed to her craft and it’s genuinely been a pleasure interacting with her"</p>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="teacher-portrait">
+        <img src="assets/divya-meena-guhan.png" alt="Divya Meena Guhan, Founder and Director, playing the veena">
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">ABOUT YOUR TEACHER</span>
+        <h2 style="margin-top:12px;font-size:clamp(1.8rem,3vw,2.4rem);">Divya Meena Guhan</h2>
+        <div style="margin-top:20px;">
+          <p>Divya Meena is a third-generation Carnatic musician who began her vocal training with her grandfather, a Veena vidwan. Her father, Sri N.S. Kalyana Raman, is an 'A' graded Mridangam artist with All India Radio Vijayawada.</p>
+          <p>She studied under Vidwan Ampolu Murali Krishna garu and Vidwan Pemmaraju Suryarao garu in Vijayawada. After earning an engineering degree, she pursued an advanced three-year course in Carnatic vocal music at the Madras Music Academy, and also completed a diploma in Carnatic Music from Potti Sreeramulu Telugu University.</p>
+        </div>
+        <span class="badge">🏵 Awarded the "Sangeeta Vidwath Bhooshan"</span>
+        <blockquote>"My vision is to teach and share my knowledge with every classical music enthusiast. With ten years of expertise and participation in cultural events across the world, I aim to inspire and educate others in the world of classical music."</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream2" id="performances">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">PERFORMANCES</span>
+      <h2>Moments from the stage</h2>
+    </div>
+    <div class="grid-perf" >
+      <div class="perf-card"  >
+        <div class="perf-thumb"  >
+<iframe
+    src="https://www.youtube.com/embed/aZo3ZK3llXs"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe></div>
+        <div class="perf-caption">Narayana Teertha Tarangam, 2022</div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-thumb">
+<iframe
+    src="https://www.youtube.com/embed/7Q5HD2gg7ds"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe></div>
+        <div class="perf-caption">Sri Kanakadurge - Kalyani - Adi - Sri N. Ch. Krishnamacharyulu
+</div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-thumb"><iframe
+    src="https://www.youtube.com/embed/Xw0AjitmdY4"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe></div>
+        <div class="perf-caption">Kaa va va</div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-thumb"><iframe
+    src="https://www.youtube.com/embed/H7RUhi4r5z0"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe></div>
+        <div class="perf-caption">Naa jeevadhara - bilahari- tyagaraja</div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-thumb"><iframe
+    src="https://www.youtube.com/embed/ScFPeDapkzQ"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe></div>
+        <div class="perf-caption">Swarajhari concert vijayawada</div>
+      </div>
+      <div class="perf-card">
+        <div class="perf-thumb"><iframe
+    src="https://www.youtube.com/embed/8FuG_otYK_o"
+    title="YouTube video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe></div>
+        <div class="perf-caption">Kalinga Nartana Thillana
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:820px;">
+    <div class="section-head">
+      <span class="eyebrow">GOOD TO KNOW</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div id="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">What music lessons do you offer?<span class="plus">+</span></button>
+        <div class="faq-a"><p>We teach traditional Carnatic vocal music, from foundational Sarali Varisais through advanced krithis and manodharma (improvisation), along with dedicated devotional repertoire.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What are the levels of music classes?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Lessons are organized into three levels — Sa (Beginner), Ga (Intermediate), and Pa (Advanced) — each building on the concepts and repertoire of the last.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Where are your in-person classes available?<span class="plus">+</span></button>
+        <div class="faq-a"><p>In-person classes are held on Long Island, NY. Students anywhere else in the world can join our online classes.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do online lessons work?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Online lessons are held one-on-one over video call, at a schedule that works for you, with the same structured curriculum used in our in-person classes.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Who is the teacher?<span class="plus">+</span></button>
+        <div class="faq-a"><p>All lessons are taught personally by Smt. Divya Meena Guhan, a third-generation Carnatic musician and recipient of the "Sangeeta Vidwath Bhooshan" title.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What do I need for online classes?<span class="plus">+</span></button>
+        <div class="faq-a"><p>A stable internet connection, a laptop or tablet with a working camera and microphone, and a quiet space to practice are all you need to get started.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to know an Indian language?<span class="plus">+</span></button>
+        <div class="faq-a"><p>No prior knowledge of an Indian language is required. Lyrics and meanings are explained clearly in English as part of every lesson.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you provide course material?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, notation sheets, lyrics, and recordings are shared with every lesson so you can practice confidently between sessions.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do students get performing opportunities?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, students are regularly invited to participate in recitals, workshops, and community concerts as they progress in their training.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-maroon" id="contact">
+  <div class="wrap contact-inner">
+    <span class="eyebrow on-dark">FILL THE FORM</span>
+    <h2>Begin your music journey</h2>
+    <p class="lead">Complete the form below and we'll be in touch to help you get started. You can also reach us directly at geetavadya@gmail.com.</p>
+    <form class="enroll" id="enroll-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div>
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Your full name" required>
+      </div>
+      <div>
+        <label>Age</label>
+        <input type="number" name="age" placeholder="Your age" min="1">
+      </div>
+      <div>
+        <label>Contact number</label>
+        <input type="tel" name="phone" placeholder="Phone number" required>
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" placeholder="you@email.com" required>
+      </div>
+      <div>
+        <label>Location</label>
+        <select name="location">
+          <option value="">Select…</option>
+          <option>Pittsburgh, Pennsylvania, NY (in-person)</option>
+          <option>Online — worldwide</option>
+        </select>
+      </div>
+      <div>
+        <label>Choose program</label>
+        <select name="program">
+          <option value="">Select…</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </div>
+      <div>
+        <label>Mode of learning</label>
+        <select name="mode">
+          <option value="">Select…</option>
+          <option>In-person</option>
+          <option>Online</option>
+        </select>
+      </div>
+      <div class="full">
+        <label>Drop a message</label>
+        <textarea name="message" placeholder="Anything you'd like us to know"></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="New enrollment — Geeta Vadya School of Music">
+      <div class="submit-row">
+        <button type="submit" class="btn btn-gold">Submit enrollment</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="bg-maroon">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="logo" style="display:inline-flex;flex-direction:column;">
+          <span class="name" style="color:#fff;">Geeta Vadya</span>
+          <span class="tag" style="color:rgba(255,255,255,0.55);">SCHOOL OF MUSIC</span>
+        </span>
+        <p style="margin-top:16px;">Geetavadya School of Music offers online Carnatic vocal lessons worldwide and in-person classes in Pittsburgh, Pennsylvania for children and adults.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#performances">Performances</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:geetavadya@gmail.com">geetavadya@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Geeta Vadya School of Music. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+  });
+  document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', () => mobileMenu.style.display='none'));
+
+  // enrollment form -> Formspree (sends email with submitted details)
+  const enrollForm = document.getElementById('enroll-form');
+  if (enrollForm) {
+    enrollForm.addEventListener('submit', function(event){
+      event.preventDefault();
+      const btn = enrollForm.querySelector('.submit-row button');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      fetch(enrollForm.action, {
+        method: 'POST',
+        body: new FormData(enrollForm),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          btn.textContent = "Thank you — we'll be in touch!";
+          enrollForm.reset();
+        } else {
+          response.json().then(data => {
+            console.error('Formspree error', data);
+            btn.textContent = 'Something went wrong — please email us';
+            btn.disabled = false;
+          }).catch(() => {
+            btn.textContent = 'Something went wrong — please email us';
+            btn.disabled = false;
+          });
+        }
+      }).catch(error => {
+        console.error('Network error', error);
+        btn.textContent = 'Something went wrong — please email us';
+        btn.disabled = false;
+      });
+    });
+  }
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        if(o !== item){ o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = null; }
+      });
+      if(isOpen){
+        item.classList.remove('open');
+        a.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+</body>
+</html>
