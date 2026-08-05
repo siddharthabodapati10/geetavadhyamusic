@@ -658,57 +658,42 @@ document.querySelectorAll('.slider').forEach(slider => {
     <span class="eyebrow on-dark">FILL THE FORM</span>
     <h2>Begin your music journey</h2>
     <p class="lead">Complete the form below and we'll be in touch to help you get started. You can also reach us directly at geetavadya@gmail.com.</p>
-    <form class="enroll" id="enroll-form"  method="POST">
-      <div>
-        <label>Name</label>
-        <input type="text" name="name" placeholder="Your full name" required>
-      </div>
-      <div>
-        <label>Age</label>
-        <input type="number" name="age" placeholder="Your age" min="1">
-      </div>
-      <div>
-        <label>Contact number</label>
-        <input type="tel" name="phone" placeholder="Phone number" required>
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="email" name="email" placeholder="you@email.com" required>
-      </div>
-      <div>
-        <label>Location</label>
-        <select name="location">
-          <option value="">Select…</option>
-          <option>Pittsburgh, Pennsylvania, NY (in-person)</option>
-          <option>Online — worldwide</option>
-        </select>
-      </div>
-      <div>
-        <label>Choose program</label>
-        <select name="program">
-          <option value="">Select…</option>
-          <option>Beginner</option>
-          <option>Intermediate</option>
-          <option>Advanced</option>
-        </select>
-      </div>
-      <div>
-        <label>Mode of learning</label>
-        <select name="mode">
-          <option value="">Select…</option>
-          <option>In-person</option>
-          <option>Online</option>
-        </select>
-      </div>
-      <div class="full">
-        <label>Drop a message</label>
-        <textarea name="message" placeholder="Anything you'd like us to know"></textarea>
-      </div>
-      <input type="hidden" name="_subject" value="New enrollment — Geeta Vadya School of Music">
-      <div class="submit-row">
-        <button href="https://script.google.com/macros/s/AKfycbzj359aURMQAVpnIaBJWrl_Lxjy46-QropORz7pg2AooM0wCsoCMy0iYSZmHU3ov53u/exec" type="submit" class="btn btn-gold">Submit enrollment</button>
-      </div>
-    </form>
+    
+
+
+
+
+
+
+
+<form id="enrollmentForm">
+  <input type="text" id="name" placeholder="Name" required />
+  <input type="number" id="age" placeholder="Age" required />
+  <input type="tel" id="contactNumber" placeholder="Contact number" required />
+  <input type="email" id="email" placeholder="Email" required />
+  <input type="text" id="location" placeholder="Location" required />
+  
+  <select id="chooseProgram" required>
+    <option value="">Choose program</option>
+    <option value="Web Development">Web Development</option>
+    <option value="Data Science">Data Science</option>
+    <option value="UI/UX Design">UI/UX Design</option>
+  </select>
+
+  <select id="modeOfLearning" required>
+    <option value="">Mode of learning</option>
+    <option value="Online">Online</option>
+    <option value="Offline">Offline</option>
+    <option value="Hybrid">Hybrid</option>
+  </select>
+
+  <textarea id="message" placeholder="Drop a message."></textarea>
+  
+  <button type="submit">Submit</button>
+</form>
+
+
+
   </div>
 </section>
 
