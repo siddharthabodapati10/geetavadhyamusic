@@ -808,27 +808,43 @@ form.addEventListener("submit", async function(e) {
     });
   });
 
-function doPost(e) {
 
-  const sheet = SpreadsheetApp
-    .openById("1naFLyBmrP0KWY-Qy5lj3-T9h1iibprTSIEltQ2F3p_8")
-    .getSheetByName("Sheet1");
 
-sheet.appendRow([
-  e.parameter.name,
-  e.parameter.age,
-  e.parameter.phone,
-  e.parameter.email,
-  e.parameter.location,
-  e.parameter.program,
-  e.parameter.mode,
-  e.parameter.message
-]);
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzj359aURMQAVpnIaBJWrl_Lxjy46-QropORz7pg2AooM0wCsoCMy0iYSZmHU3ov53u/exec";
 
-  return ContentService
-    .createTextOutput("Success")
-    .setMimeType(ContentService.MimeType.TEXT);
-}
+  document.getElementById("enrollmentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = {
+      name: document.getElementById("name").value,
+      age: document.getElementById("age").value,
+      contactNumber: document.getElementById("contactNumber").value,
+      email: document.getElementById("email").value,
+      location: document.getElementById("location").value,
+      chooseProgram: document.getElementById("chooseProgram").value,
+      modeOfLearning: document.getElementById("modeOfLearning").value,
+      message: document.getElementById("message").value
+    };
+
+    fetch(WEB_APP_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(() => {
+      alert("Form submitted successfully!");
+      document.getElementById("enrollmentForm").reset();
+    })
+    .catch((error) => {
+      console.error("Submission Error:", error);
+      alert("Failed to submit form.");
+    });
+  });
+
+
 
 </script>
 </body>
