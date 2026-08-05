@@ -854,6 +854,90 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzj359aURMQAVpnIaBJ
 
 
 
+var NOTIFY_EMAIL = 'sidduvideoworks@gmail.com'; // where submission alerts are sent
+var SHEET_NAME = null; // set to a sheet tab name (string) to target a specific tab, or leave null for the active sheet
+ 
+function doPost(e) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = SHEET_NAME ? ss.getSheetByName(SHEET_NAME) : ss.getActiveSheet();
+ 
+    var params = (e && e.parameter) ? e.parameter : {};
+ 
+    // If the sheet is empty, write a header row first.
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        'Timestamp', 'Name', 'Age', 'Phone', 'Email',
+        'Location', 'Program', 'Mode', 'Message'
+      ]);
+    }
+ 
+    var row = [
+      new Date(),
+      params.name || '',
+      params.age || '',
+      params.phone || '',
+      params.email || '',
+      params.location || '',
+      params.program || '',
+      params.mode || '',
+      params.message || ''
+    ];
+    sheet.appendRow(row);
+ 
+    sendNotificationEmail(params);
+ 
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: 'success' }))
+      .setMimeType(ContentService.MimeType.JSON);
+ 
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: 'error', message: err.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+ 
+function sendNotificationEmail(params) {
+  var subject = 'New enrollment form submission — ' + (params.name || 'Unknown');
+ 
+  var body =
+    'New submission received on the Geeta Vadya website:\n\n' +
+    'Name: ' + (params.name || '-') + '\n' +
+    'Age: ' + (params.age || '-') + '\n' +
+    'Phone: ' + (params.phone || '-') + '\n' +
+    'Email: ' + (params.email || '-') + '\n' +
+    'Location: ' + (params.location || '-') + '\n' +
+    'Program: ' + (params.program || '-') + '\n' +
+    'Mode of learning: ' + (params.mode || '-') + '\n' +
+    'Message: ' + (params.message || '-') + '\n\n' +
+    'Submitted: ' + new Date().toString();
+ 
+  MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
+}
+ 
+/**
+ * Optional: run this once manually from the Apps Script editor
+ * (select "testDoPost" in the function dropdown and click Run)
+ * to confirm email + sheet writing both work before going live.
+ */
+function testDoPost() {
+  var fakeEvent = {
+    parameter: {
+      name: 'Test Student',
+      age: '25',
+      phone: '555-123-4567',
+      email: 'test@example.com',
+      location: 'Online — worldwide',
+      program: 'Beginner',
+      mode: 'Online',
+      message: 'This is a test submission.'
+    }
+  };
+  doPost(fakeEvent);
+}
+
+
 </script>
 </body>
 </html>
