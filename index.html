@@ -396,7 +396,7 @@ document.querySelectorAll('.slider').forEach(slider => {
 
         <div class="arch-frame">
 
-          <img class = "slide"src="Music_updated/Assets/divya-meena-guhan.jpeg" alt="Smt. Divya Meena Guhan playing the veena">
+          <img class = "slide"src="assets/divya-meena-guhan.jpeg" alt="Smt. Divya Meena Guhan playing the veena">
         </div>
         <div class="caption">
           <strong>Smt. Divya Meena Guhan</strong>
@@ -476,7 +476,7 @@ document.querySelectorAll('.slider').forEach(slider => {
       
 
         <div class="how-card">
-        <img class="testi-avatar" src="Music_updated/Assets/Sowmya.jpeg" alt="Sowmya, student">
+        <img class="testi-avatar" src="Assets/Sowmya.jpeg" alt="Sowmya, student">
         <span class="swara">Sowmya</span>
         <h4>Student</h4>
         <p>"Divya Meena is very patient and highly skilled at assessing a student’s abilities and interests and tailors their lessons accordingly. She is flexible in scheduling classes, which is important for me to be able to pursue my passion along with my hectic routine. She makes my learnings fun and challenging. She cuts me slack during challenging lessons but also pushes me to learn at my maximum capacity. It is because of her push and efforts to build confidence in my capabilities that I got to perform my first carnatic concert in April 2024."</p>
@@ -486,7 +486,7 @@ document.querySelectorAll('.slider').forEach(slider => {
 
 
       <div class="how-card">
-        <img class="testi-avatar" src="Music_updated/Assets/sac.jpeg" alt="Sowmya, student">
+        <img class="testi-avatar" src="Assets/sac.jpeg" alt="Sowmya, student">
         <span class="swara">Sachika Modi</span>
         <h4>Student</h4>
         <p>"I have been leaning with Divya akka for almost six months and I’ve learned a little over 10 songs. For me Akka has been a big help and step in my music career. When I started singing classes with her I was a student with decent amount of knowledge but now I’m able to grasp songs relatively easily. I enjoy being able to disconnect from the world with akka while being able to have a friend and a teacher"</p>
@@ -495,7 +495,7 @@ document.querySelectorAll('.slider').forEach(slider => {
 
 
       <div class="how-card">
-        <img class="testi-avatar" src="Music_updated/Assets/kaul.jpeg" alt="Sowmya, student">
+        <img class="testi-avatar" src="Assets/kaul.jpeg" alt="Sowmya, student">
         <span class="swara">Kaulini Kanakagiri</span>
         <h4>Student</h4>
         <p>"When I first started music journey with Meena Akka, I was hesitant in my abilities to sing, with the consistency of the support from Meena Akka, I feel that my confidence is building because she sees my true potential. All the interactions I have had with her, she does not speak to me in a way that she is more superior, she always speaks as if I am a friend and younger sister. Her encouragement has brought me a long way in the span of one year and motivates me to keep trying harder.."</p>
@@ -504,7 +504,7 @@ document.querySelectorAll('.slider').forEach(slider => {
 
 
         <div class="how-card">
-        <img class="testi-avatar" src="Music_updated/Assets/aditi.avif" alt="Sowmya, student">
+        <img class="testi-avatar" src="Assets/aditi.avif" alt="Sowmya, student">
         <span class="swara">Aditi</span>
         <h4>Student</h4>
         <p>"Meena is very patient with my 4 year old daughter and knows how to engage her in the class. We started learning music from Meena when my daughter was 3 years old. She is very good with kids and can easily hold their attention. She is very committed to her craft and it’s genuinely been a pleasure interacting with her"</p>
@@ -521,7 +521,7 @@ document.querySelectorAll('.slider').forEach(slider => {
   <div class="wrap">
     <div class="about-grid">
       <div class="teacher-portrait">
-        <img src="Music_updated/Assets/divya-meena-guhan.png" alt="Divya Meena Guhan, Founder and Director, playing the veena">
+        <img src="assets/divya-meena-guhan.png" alt="Divya Meena Guhan, Founder and Director, playing the veena">
       </div>
       <div class="about-copy">
         <span class="eyebrow">ABOUT YOUR TEACHER</span>
@@ -666,12 +666,18 @@ document.querySelectorAll('.slider').forEach(slider => {
 
 
 
-<form class="enroll" id="enroll-form"  method="POST">
+
+<form action="https://api.web3forms.com/submit" method="POST" id="enroll-form" class="enroll">
+
+    <input type="hidden" name="access_key" value="9e87b28f-b25a-46bf-b456-a0b374444ad1">
+    <input type="hidden" name="_subject" value="New Enrollment - Geeta Vadya School of Music">
       <div>
+
         <label>Name</label>
         <input type="text" name="name" placeholder="Your full name" required>
       </div>
       <div>
+
         <label>Age</label>
         <input type="number" name="age" placeholder="Your age" min="1">
       </div>
@@ -712,9 +718,11 @@ document.querySelectorAll('.slider').forEach(slider => {
         <label>Drop a message</label>
         <textarea name="message" placeholder="Anything you'd like us to know"></textarea>
       </div>
-      <input type="hidden" name="_subject" value="New enrollment — Geeta Vadya School of Music">
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none">
       <div class="submit-row">
-        <button href="https://script.google.com/macros/s/AKfycbzj359aURMQAVpnIaBJWrl_Lxjy46-QropORz7pg2AooM0wCsoCMy0iYSZmHU3ov53u/exec" type="submit" class="btn btn-gold">Submit enrollment</button>
+           <button type="submit" class="btn btn-gold">
+                  Submit enrollment
+            </button>      
       </div>
     </form>
   </div>
@@ -759,8 +767,7 @@ document.querySelectorAll('.slider').forEach(slider => {
   });
   document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', () => mobileMenu.style.display='none'));
 
-  // enrollment form 
-
+  // enrollment form — submits to Web3Forms
 
 const form = document.getElementById("enroll-form");
 
@@ -772,19 +779,23 @@ form.addEventListener("submit", async function(e) {
     submitBtn.textContent = "Submitting...";
 
     try {
-        const response = await fetch(
-            "https://script.google.com/macros/s/AKfycbzj359aURMQAVpnIaBJWrl_Lxjy46-QropORz7pg2AooM0wCsoCMy0iYSZmHU3ov53u/exec",
-            {
-                method: "POST",
-                body: new FormData(form)
-            }
-        );
+        const formData = new FormData(form);
 
-        const result = await response.text();
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Accept": "application/json" },
+            body: formData
+        });
 
-        alert("Enrollment submitted successfully!");
+        const result = await response.json();
 
-        form.reset();
+        if (result.success) {
+            alert("Enrollment submitted successfully! We'll be in touch soon.");
+            form.reset();
+        } else {
+            console.error(result);
+            alert("Submission failed. Please try again.");
+        }
     } catch (err) {
         console.error(err);
         alert("Submission failed. Please try again.");
@@ -816,126 +827,6 @@ form.addEventListener("submit", async function(e) {
     });
   });
 
-
-
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzj359aURMQAVpnIaBJWrl_Lxjy46-QropORz7pg2AooM0wCsoCMy0iYSZmHU3ov53u/exec";
-
-  document.getElementById("enrollmentForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = {
-      name: document.getElementById("name").value,
-      age: document.getElementById("age").value,
-      contactNumber: document.getElementById("contactNumber").value,
-      email: document.getElementById("email").value,
-      location: document.getElementById("location").value,
-      chooseProgram: document.getElementById("chooseProgram").value,
-      modeOfLearning: document.getElementById("modeOfLearning").value,
-      message: document.getElementById("message").value
-    };
-
-    fetch(WEB_APP_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-    .then(() => {
-      alert("Form submitted successfully!");
-      document.getElementById("enrollmentForm").reset();
-    })
-    .catch((error) => {
-      console.error("Submission Error:", error);
-      alert("Failed to submit form.");
-    });
-  });
-
-
-
-var NOTIFY_EMAIL = 'sidduvideoworks@gmail.com'; // where submission alerts are sent
-var SHEET_NAME = null; // set to a sheet tab name (string) to target a specific tab, or leave null for the active sheet
- 
-function doPost(e) {
-  try {
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = SHEET_NAME ? ss.getSheetByName(SHEET_NAME) : ss.getActiveSheet();
- 
-    var params = (e && e.parameter) ? e.parameter : {};
- 
-    // If the sheet is empty, write a header row first.
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow([
-        'Timestamp', 'Name', 'Age', 'Phone', 'Email',
-        'Location', 'Program', 'Mode', 'Message'
-      ]);
-    }
- 
-    var row = [
-      new Date(),
-      params.name || '',
-      params.age || '',
-      params.phone || '',
-      params.email || '',
-      params.location || '',
-      params.program || '',
-      params.mode || '',
-      params.message || ''
-    ];
-    sheet.appendRow(row);
- 
-    sendNotificationEmail(params);
- 
-    return ContentService
-      .createTextOutput(JSON.stringify({ result: 'success' }))
-      .setMimeType(ContentService.MimeType.JSON);
- 
-  } catch (err) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ result: 'error', message: err.message }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
- 
-function sendNotificationEmail(params) {
-  var subject = 'New enrollment form submission — ' + (params.name || 'Unknown');
- 
-  var body =
-    'New submission received on the Geeta Vadya website:\n\n' +
-    'Name: ' + (params.name || '-') + '\n' +
-    'Age: ' + (params.age || '-') + '\n' +
-    'Phone: ' + (params.phone || '-') + '\n' +
-    'Email: ' + (params.email || '-') + '\n' +
-    'Location: ' + (params.location || '-') + '\n' +
-    'Program: ' + (params.program || '-') + '\n' +
-    'Mode of learning: ' + (params.mode || '-') + '\n' +
-    'Message: ' + (params.message || '-') + '\n\n' +
-    'Submitted: ' + new Date().toString();
- 
-  MailApp.sendEmail(NOTIFY_EMAIL, subject, body);
-}
- 
-/**
- * Optional: run this once manually from the Apps Script editor
- * (select "testDoPost" in the function dropdown and click Run)
- * to confirm email + sheet writing both work before going live.
- */
-function testDoPost() {
-  var fakeEvent = {
-    parameter: {
-      name: 'Test Student',
-      age: '25',
-      phone: '555-123-4567',
-      email: 'test@example.com',
-      location: 'Online — worldwide',
-      program: 'Beginner',
-      mode: 'Online',
-      message: 'This is a test submission.'
-    }
-  };
-  doPost(fakeEvent);
-}
 
 
 </script>
