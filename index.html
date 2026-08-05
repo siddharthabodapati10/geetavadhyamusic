@@ -658,7 +658,7 @@ document.querySelectorAll('.slider').forEach(slider => {
     <span class="eyebrow on-dark">FILL THE FORM</span>
     <h2>Begin your music journey</h2>
     <p class="lead">Complete the form below and we'll be in touch to help you get started. You can also reach us directly at geetavadya@gmail.com.</p>
-    <form class="enroll" id="enroll-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form class="enroll" id="enroll-form"  method="POST">
       <div>
         <label>Name</label>
         <input type="text" name="name" placeholder="Your full name" required>
@@ -751,41 +751,15 @@ document.querySelectorAll('.slider').forEach(slider => {
   });
   document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', () => mobileMenu.style.display='none'));
 
-  // enrollment form -> Formspree (sends email with submitted details)
-  const enrollForm = document.getElementById('enroll-form');
-  if (enrollForm) {
-    enrollForm.addEventListener('submit', function(event){
-      event.preventDefault();
-      const btn = enrollForm.querySelector('.submit-row button');
-      const originalText = btn.textContent;
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
+  // enrollment form 
 
-      fetch(enrollForm.action, {
-        method: 'POST',
-        body: new FormData(enrollForm),
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          btn.textContent = "Thank you — we'll be in touch!";
-          enrollForm.reset();
-        } else {
-          response.json().then(data => {
-            console.error('Formspree error', data);
-            btn.textContent = 'Something went wrong — please email us';
-            btn.disabled = false;
-          }).catch(() => {
-            btn.textContent = 'Something went wrong — please email us';
-            btn.disabled = false;
-          });
-        }
-      }).catch(error => {
-        console.error('Network error', error);
-        btn.textContent = 'Something went wrong — please email us';
-        btn.disabled = false;
-      });
-    });
-  }
+fetch("https://script.google.com/macros/s/AKfycbxLPV0wks9IiIc6y2_x351ccAcsR0UjL4Xk2muo1CpnV35AhKu83Bs9Om2cRmT_yo1T/exec", {
+    method: "POST",
+    body: new FormData(form)
+});
+
+
+
 
   // faq accordion
   document.querySelectorAll('.faq-item').forEach(item => {
@@ -805,6 +779,26 @@ document.querySelectorAll('.slider').forEach(slider => {
       }
     });
   });
+
+function doPost(e) {
+
+  const sheet = SpreadsheetApp
+    .openById("1naFLyBmrP0KWY-Qy5lj3-T9h1iibprTSIEltQ2F3p_8")
+    .getSheetByName("Sheet1");
+
+  sheet.appendRow([
+    new Date(),
+    e.parameter.name,
+    e.parameter.phone,
+    e.parameter.email,
+    e.parameter.course
+  ]);
+
+  return ContentService
+    .createTextOutput("Success")
+    .setMimeType(ContentService.MimeType.TEXT);
+}
+
 </script>
 </body>
 </html>
